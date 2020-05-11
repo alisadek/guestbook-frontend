@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import "./Header.css"
+import './Header.css';
+import NavLinks from './NavLinks';
 
-function Header(){
-    return (
-    <header className = "main-header">
-    <h1>The Guest book</h1>
-    </header>);
+function Header(props)  {
+  return <header className="main-header">
+  <h1>The Guest Book</h1>
+  <NavLinks />
+  </header>;
 };
 
 export default Header;

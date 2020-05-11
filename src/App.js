@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from "./Components/Navigation/Header";
 import Footer from "./Components/Navigation/Footer";
@@ -8,12 +8,22 @@ import './App.css';
 
 
 function App() {
+  const [comments, setComments] = useState ([]);
+
+function addComment(newComment){
+  setComments(prevComments => {
+    return ([...prevComments, newComment]);
+  }); 
+}
+
 return(
   <div>
   <Header />
   <main>
-  <Comment />
-  <CreateArea />
+ 
+  {comments.map((commentItem, index) => {
+    return(<Comment content = {commentItem} />)})}
+  <CreateArea onAdd= {addComment} />
   </main>
   <Footer />
   

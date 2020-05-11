@@ -10,6 +10,8 @@ function CreateArea(props){
         setComment(value);
     }
     function submitComment(event){
+        props.onAdd(comment);
+        setComment("");
         event.preventDefault();
     }
     return(
