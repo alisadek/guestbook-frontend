@@ -15,14 +15,11 @@
   
  */
   .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    position: relative;
+    float: bottom;
+    clear:both;
+    height:2.5rem;
     text-align: center;
-    padding: 0 16px;
-    height: 2.5rem;
-  }
-    footer p {
     color: #ccc;
-  }
+   }
+   

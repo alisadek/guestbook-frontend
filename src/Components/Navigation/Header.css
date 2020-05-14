@@ -15,9 +15,7 @@
   .main-header h1{
     color: #eaeaea;
   }
-  main {
-    margin-top: 5rem;
-  }
+
   
   @media (min-width: 768px) {
     .main-header {

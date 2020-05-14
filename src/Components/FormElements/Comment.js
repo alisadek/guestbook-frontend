@@ -8,7 +8,7 @@ function Comment(props) {
 
   
     <div className= "comment">
-        <h1> Ali Sadek</h1>
+        <h1> {props.uName}</h1>
       <p>{props.content}</p>
       <button>Edit</button>
       <button>Reply</button>

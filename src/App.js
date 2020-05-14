@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 
 import Header from "./Components/Navigation/Header";
 import Footer from "./Components/Navigation/Footer";
-import Comment from './Components/UIElements/Comment';
-import CreateArea from './Components/UIElements/CreateArea';
+
+import Home from './Pages/Home';
+import Auth from './Pages/Auth';
 import './App.css';
 
 
 function App() {
-  const [comments, setComments] = useState ([]);
-
-function addComment(newComment){
-  setComments(prevComments => {
-    return ([...prevComments, newComment]);
-  }); 
-}
+  
 
 return(
-  <div>
+  <Router>
   <Header />
   <main>
- 
-  {comments.map((commentItem, index) => {
-    return(<Comment content = {commentItem} />)})}
-  <CreateArea onAdd= {addComment} />
+  <Switch>
+  <Route path="/" exact>
+  <Home />
+</Route>
+<Route path="/login">
+<Auth />
+</Route>
+{/* <Redirect to ="/" /> */}
+</Switch>
   </main>
   <Footer />
-  
-  </div>
+</Router>
 );
-}
+};
 
 export default App;
