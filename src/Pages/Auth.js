@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Input from "../Components/FormElements/Input";
 import Card from "../Components/UIElements/Card";
+import {AuthContext} from "../context/auth-context"
 import "./Auth.css";
 
 function Auth(props) {
+    const auth= useContext (AuthContext);
   const [contact, setContact] = useState({ email: "", password: "", name:"" });
   const [isLoginMode, setIsLoginMode] = useState(true);
   function handleChange(event) {
@@ -24,8 +26,9 @@ function Auth(props) {
   };
 
   function submitContact(event) {
+      event.preventDefault();
     console.log(contact);
-    event.preventDefault();
+    auth.login();
   }
 
   return (

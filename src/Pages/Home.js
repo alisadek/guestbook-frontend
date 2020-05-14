@@ -1,25 +1,51 @@
-import React, { useState } from 'react'
-import NewComment from '../Components/FormElements/NewComment';
-import Comment from '../Components/FormElements/Comment';
+import React, { useState, useContext } from "react";
+import NewComment from "../Components/Comments/NewComment";
+import Comment from "../Components/Comments/Comment";
+import { AuthContext } from "../context/auth-context";
+import Card from "../Components/UIElements/Card";
 
-export default function Home() {
+function Home() {
+  const auth = useContext(AuthContext);
+  const [comments, setComments] = useState([]);
 
-    const [comments, setComments] = useState ([]);
 
-    function addComment(newComment){
-      setComments(prevComments => {
-        console.log(newComment);
-        return ([...prevComments, newComment]);
-      }); 
-    }
 
-    return (
-         <div>
-         
-          {comments.map((commentItem, index) => {
-            return(<Comment id={index} content = {commentItem.content} uName = "Ali Sadek" />)})}
-          <NewComment onAdd= {addComment} />
-          
-          </div>
-    )
+  function deleteComment(id){
+    setComments(prevComments=>{
+    return ( 
+        prevComments.filter ((comment, index)=>{
+        return(id!==index);
+        })
+ );  
+    });
 }
+
+
+  function addComment(newComment) {
+    setComments((prevComments) => {
+      console.log(newComment);
+      return [...prevComments, newComment];
+    });
+  }
+
+  return (
+    <div>
+      {comments.map((commentItem, index) => {
+        return (
+          <Comment  onDelete={deleteComment} id={index} 
+          content={commentItem.content} 
+          uName="Ali Sadek" />
+        );
+      })}
+      {auth.isLoggedIn ? (
+        <NewComment onAdd={addComment} />
+      ) : (
+        <Card className="comment">
+          <h1>Please login to leave a comment</h1>
+        </Card>
+      )}
+    </div>
+  );
+}
+
+export default Home;

@@ -12,7 +12,7 @@ function Input(props) {
         placeholder={props.placeholder}
         rows={props.rows || 3}
         onChange= {props.onChange}
-        value = {props.value}
+        value = {props.value||""}
   
       />
     );

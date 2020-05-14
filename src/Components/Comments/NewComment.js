@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import Input from "./Input";
+import Input from "../FormElements/Input";
 import "./NewComment.css";
 import Card from "../UIElements/Card";
 
 function NewComment(props) {
-  const [comment, setComment] = useState({});
-
+  const [comment, setComment] = useState({content:props.value||""});
+ 
   function handleChange(event) {
     const value = event.target.value;
     setComment({content:value, id : props.id, user: props.uName});

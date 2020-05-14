@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import {NavLink} from "react-router-dom";
 
+import {AuthContext} from "../../context/auth-context";
 import "./NavLinks.css";
 
 function NavLinks(props) {
+    const auth = useContext (AuthContext);
   return (
     <ul>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+      {!auth.isLoggedIn&&(
       <li>
-        <NavLink to="/signup">Signup</NavLink>
-      </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
-      </li>
+        <NavLink to="/auth">Authenticate</NavLink>
+      </li>)}
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
       <li>
         <NavLink to="/about">About</NavLink>
       </li>
+      {auth.isLoggedIn&&(
+      <li>
+      <button className= "btn" onClick = {auth.logout}>Logout</button>
+      </li>
+      )}    
     </ul>
   );
 }
