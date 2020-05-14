@@ -2,51 +2,82 @@ import React, { useState, useContext } from "react";
 
 import Input from "../Components/FormElements/Input";
 import Card from "../Components/UIElements/Card";
-import {AuthContext} from "../context/auth-context"
+import { AuthContext } from "../context/auth-context";
+import ErrorModal from "../Components/UIElements/ErrorModal";
+import { useHttpClient } from "../Hooks/http-hook";
 import "./Auth.css";
 
-function Auth(props) {
-    const auth= useContext (AuthContext);
-  const [contact, setContact] = useState({ email: "", password: "", name:"" });
+function Auth() {
+  const auth = useContext(AuthContext);
+  const {error,sendRequest, clearError} = useHttpClient();
+  const [contact, setContact] = useState({ email: "", password: "", name: "" });
   const [isLoginMode, setIsLoginMode] = useState(true);
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setContact(prevValue => {
-        return ({
-            ...prevValue,
-            [name]: value
-        });
+    setContact((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
     });
   }
 
-  function switchModeHandler(event){
-    setIsLoginMode(prevMode => !prevMode);
-    setContact({email: "", password: "", name:""});
-  };
-
-  function submitContact(event) {
-      event.preventDefault();
-    console.log(contact);
-    auth.login();
+  function switchModeHandler(event) {
+    setIsLoginMode((prevMode) => !prevMode);
+    setContact({ email: "", password: "", name: "" });
   }
 
+  async function submitContact(event) {
+    event.preventDefault();
+
+    if (isLoginMode) {
+      try{
+         await sendRequest("http://localhost:5000/api/login","POST", JSON.stringify({
+          email: contact.email,
+          password: contact.password
+        }), { 
+            "Content-Type": "application/json" 
+          }
+         
+         );
+        
+         auth.login();
+        } catch(err){}
+      }else {
+      try {
+        await sendRequest("http://localhost:5000/api/signup", "POST",JSON.stringify({
+          name: contact.name,
+          email: contact.email,
+          password: contact.password,
+        }), { "Content-Type": "application/json" }
+             
+        );
+       
+        auth.login();
+      }catch (err){} 
+    }
+  };
+
   return (
-    <Card className="authentication">
-      <form>
-      <h1> {!isLoginMode?"SIGNUP":"LOGIN"}</h1>
-        {!isLoginMode &&    
-          
+    <React.Fragment>
+      <ErrorModal  error={error} onClear={clearError} />
+      <Card className="authentication">
+        <form>
+          <h1> {!isLoginMode ? "SIGNUP" : "LOGIN"}</h1>
+          {!isLoginMode && (
             <Input
-            className="login"
-            name="name"
-            type="text"
-            element="input"
-            id="name"
-            placeholder="Your Name"
-            onChange={handleChange}
-            value={contact.name}
-            label="Name" />}
+              className="login"
+              name="name"
+              type="text"
+              element="input"
+              id="name"
+              placeholder="Your Name"
+              onChange={handleChange}
+              value={contact.name}
+              label="Name"
+            />
+          )}
           <Input
             className="login"
             name="email"
@@ -68,11 +99,15 @@ function Auth(props) {
             value={contact.password}
             label="Password"
           />
-          <button onClick={submitContact}>{isLoginMode?"LOGIN":"SIGNUP"}</button>
-
-      </form>
-    <button className="ghost" onClick={switchModeHandler}>SWITCH TO {isLoginMode?"SIGNUP":"LOGIN"}</button> 
-    </Card>
+          <button onClick={submitContact}>
+            {isLoginMode ? "LOGIN" : "SIGNUP"}
+          </button>
+        </form>
+        <button className="ghost" onClick={switchModeHandler}>
+          SWITCH TO {isLoginMode ? "SIGNUP" : "LOGIN"}
+        </button>
+      </Card>
+    </React.Fragment>
   );
 }
 
