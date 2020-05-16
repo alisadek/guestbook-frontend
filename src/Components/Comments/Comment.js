@@ -48,13 +48,13 @@ function Comment(props) {
     <p>Deleting a message cannot be undone!</p>
   </Modal>
     <div className="comment">
-      <h1> {props.creator}</h1>
+      <h1> {props.author}</h1>
       <p>{props.content}</p>
 
 
-      {auth.isLoggedIn && <button onClick={handleEdit}>Edit</button>}
+      {auth.userId===props.creator && <button onClick={handleEdit}>Edit</button>}
       {auth.isLoggedIn && <button>Reply</button>}
-      {auth.isLoggedIn && <button onClick= {showDeleteWarningHandler}>Delete</button>}
+      {auth.userId===props.creator && <button onClick= {showDeleteWarningHandler}>Delete</button>}
     </div>
     </div>
   );

@@ -25,15 +25,22 @@ function Home() {
 
   async function addComment(newComment) {
     try {
-      await sendRequest(
+        await sendRequest(
         "http://localhost:5000/api/",
         "POST",
         JSON.stringify({
           content: newComment.content,
           creator: auth.userId,
+          author: auth.userName
         }),
-        { "Content-Type": "application/json" }
+        { "Content-Type": "application/json" },
+        
+        // {Authorization: "Bearer"+ auth.token}
       );
+      try {
+        const responseData = await sendRequest("http://localhost:5000/api/");
+        setComments(responseData.foundComments);
+      } catch {}
     } catch (err) {}
     
     //  setComment({content: ""});
@@ -87,6 +94,7 @@ function Home() {
                 onEditSubmit={submitEdittedComment}
                 value={oldComment.content}
                 editMode={isEditMode}
+                author= {auth.userName}
                 key= {commentItem.id}
                 id= {oldComment.id}
                 mode= {isEditMode}
@@ -97,7 +105,8 @@ function Home() {
                 key= {commentItem.id}
                 id={commentItem.id}
                 content={commentItem.content}
-                creator={commentItem.creator}
+                author = {commentItem.author}
+                creator={commentItem.author}
                 onEdit={editComment}
                 onEditSubmit={submitEdittedComment}
               />
@@ -108,6 +117,7 @@ function Home() {
               key={commentItem.id}
               id={commentItem.id}
               content={commentItem.content}
+              author = {commentItem.author}
               creator={commentItem.creator}
               onEdit={editComment}
               onEditSubmit={submitEdittedComment}

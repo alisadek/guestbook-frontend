@@ -3,14 +3,15 @@ import React, { useState } from "react";
 import Input from "../FormElements/Input";
 import "./NewComment.css";
 import Card from "../UIElements/Card";
+import { AuthContext } from "../../context/auth-context";
 
 function NewComment(props) {
-
-  const [comment, setComment] = useState({ content: props.value || "" });
+  const auth = AuthContext;
+  const [comment, setComment] = useState({ content: props.value || "" , author: auth.userName});
 
   function handleChange(event) {
     const value = event.target.value;
-    setComment({ content: value, id: props.id, user: props.creator });
+    setComment({ content: value, id: props.id, author: auth.userName });
   }
 
   function handleEditSubmit(event) {
