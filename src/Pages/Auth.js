@@ -33,7 +33,7 @@ function Auth() {
 
     if (isLoginMode) {
       try{
-         await sendRequest("http://localhost:5000/api/login","POST", JSON.stringify({
+         const responseData = await sendRequest("http://localhost:5000/api/login","POST", JSON.stringify({
           email: contact.email,
           password: contact.password
         }), { 
@@ -42,11 +42,11 @@ function Auth() {
          
          );
         
-         auth.login();
+         auth.login(responseData.user.id);
         } catch(err){}
       }else {
       try {
-        await sendRequest("http://localhost:5000/api/signup", "POST",JSON.stringify({
+        const responseData = await sendRequest("http://localhost:5000/api/signup", "POST",JSON.stringify({
           name: contact.name,
           email: contact.email,
           password: contact.password,
@@ -54,7 +54,7 @@ function Auth() {
              
         );
        
-        auth.login();
+        auth.login(responseData.user.id);
       }catch (err){} 
     }
   };

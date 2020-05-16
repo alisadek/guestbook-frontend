@@ -5,29 +5,42 @@ import Modal from "../UIElements/Modal";
 import { AuthContext } from "../../context/auth-context";
 import Button from "../FormElements/Button";
 import "./Comment.css";
+import { useHttpClient } from "../../Hooks/http-hook";
+import ErrorModal from "../UIElements/ErrorModal";
 
 function Comment(props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false); 
   const auth = useContext(AuthContext);
+  const { error, sendRequest, clearError } = useHttpClient();
 
     function showDeleteWarningHandler (){
       setShowDeleteModal(true);
     }
+
     function cancelDeleteWarningHandler(){
       setShowDeleteModal(false);
     }
-    function confirmDeleteHandler(){
+
+    async function confirmDeleteHandler(){
+      setShowDeleteModal(false);
+      try{
+      await sendRequest(`http://localhost:5000/api/${props.id}`,"DELETE")
+      }catch(err){};
       props.onDelete(props.id);
       cancelDeleteWarningHandler();
     }
 
-
+    function handleEdit(event){
+      props.onEdit(props.id, props.content);
+      event.preventDefault();
+    }
     
 
   return (
     <div>
     <Modal show= {showDeleteModal} onCancel={cancelDeleteWarningHandler} header = "Are you sure?" footerClass="place-item__modal-action" footer={
       <React.Fragment>
+      <ErrorModal error= {error} onClear= {clearError} />
         <Button onClick={cancelDeleteWarningHandler}>Cancel</Button>
         <Button onClick={confirmDeleteHandler}>Delete </Button>
       </React.Fragment>
@@ -35,11 +48,11 @@ function Comment(props) {
     <p>Deleting a message cannot be undone!</p>
   </Modal>
     <div className="comment">
-      <h1> {props.uName}</h1>
-      <p>{props.content}</p>:
+      <h1> {props.creator}</h1>
+      <p>{props.content}</p>
 
 
-      {auth.isLoggedIn && <button>Edit</button>}
+      {auth.isLoggedIn && <button onClick={handleEdit}>Edit</button>}
       {auth.isLoggedIn && <button>Reply</button>}
       {auth.isLoggedIn && <button onClick= {showDeleteWarningHandler}>Delete</button>}
     </div>
