@@ -1,25 +1,63 @@
- .big-button{
+.button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
+	border: 1px solid #252a34;
 	background-color:  #252a34;
 	color: #FFFFFF;
-	font-size: 12px;
+	font-size: 15px;
 	font-weight: bold;
 	padding: 12px 45px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
-}
- .big-button:active {
-	transform: scale(0.95);
-}
-
-.big-button button:focus {
+  }
+  
+  .button:focus {
 	outline: none;
-}
-
-.big-button button.ghost {
-	background-color: transparent;
-    border-color: #252a34;
-    color: #252a34;
-}
+  }
+  
+  .button:hover,
+  .button:active {
+	background: #ff4382;
+	border-color: #ff4382;
+  }
+  
+  .button--inverse {
+	background: transparent;
+	color: #252a34;
+  }
+  .button:active{
+	  transform: scale(0.95);
+  }
+  .button--inverse:hover,
+  .button--inverse:active {
+	color: white;
+	background: #252a34;
+  }
+  
+  .button--danger {
+	background: #830000;
+	border-color: #830000;
+  }
+  
+  .button--danger:hover,
+  .button--danger:active {
+	background: #f34343;
+	border-color: #f34343;
+  }
+  
+  .button:disabled,
+  .button:hover:disabled,
+  .button:active:disabled {
+	background: #ccc;
+	color: #979797;
+	border-color: #ccc;
+	cursor: not-allowed;
+  }
+  
+  .button--small {
+	font-size: 0.8rem;
+  }
+  
+  .button--big {
+	font-size: 1.5rem;
+  }

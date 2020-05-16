@@ -52,9 +52,9 @@ function Comment(props) {
       <p>{props.content}</p>
 
 
-      {auth.userId===props.creator && <button onClick={handleEdit}>Edit</button>}
-      {auth.isLoggedIn && <button>Reply</button>}
-      {auth.userId===props.creator && <button onClick= {showDeleteWarningHandler}>Delete</button>}
+      {auth.userId===props.creator && <button style= {{borderRadius: "none", boxShadow:"none"}} onClick={handleEdit}>Edit</button>}
+      {auth.isLoggedIn && <button style= {{borderRadius: "none", boxShadow:"none", marginLeft: "2px"}}>Reply</button>}
+      {auth.userId===props.creator && <button style= {{borderRadius: "none", boxShadow:"none"}} onClick= {showDeleteWarningHandler}>Delete</button>}
     </div>
     </div>
   );

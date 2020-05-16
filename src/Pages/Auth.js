@@ -5,6 +5,7 @@ import Card from "../Components/UIElements/Card";
 import { AuthContext } from "../context/auth-context";
 import ErrorModal from "../Components/UIElements/ErrorModal";
 import { useHttpClient } from "../Hooks/http-hook";
+import Button from "../Components/FormElements/Button";
 import "./Auth.css";
 
 function Auth() {
@@ -100,13 +101,13 @@ function Auth() {
             value={contact.password}
             label="Password"
           />
-          <button onClick={submitContact}>
+          <Button  onClick={submitContact}>
             {isLoginMode ? "LOGIN" : "SIGNUP"}
-          </button>
+          </Button>
         </form>
-        <button className="ghost" onClick={switchModeHandler}>
+        <Button inverse onClick={switchModeHandler}>
           SWITCH TO {isLoginMode ? "SIGNUP" : "LOGIN"}
-        </button>
+        </Button>
       </Card>
     </React.Fragment>
   );

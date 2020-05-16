@@ -7,18 +7,19 @@ import {
   Switch,
 } from "react-router-dom";
 
-import Header from "./Components/Navigation/Header";
+
 import Footer from "./Components/Navigation/Footer";
 import Home from "./Pages/Home";
 import Auth from "./Pages/Auth";
 import { AuthContext } from "./context/auth-context";
 import "./App.css";
 import { useAuth } from "./Hooks/auth-hook";
+import MainNavigation from "./Components/Navigation/MainNavigation";
 
 
 function App() {
   const { token, login, logout,userId, userName} = useAuth();
-
+  
   let routes;
 
   if (token) {
@@ -56,7 +57,7 @@ function App() {
       }}
     >
       <Router>
-        <Header />
+        <MainNavigation />
         <main>
           <Switch>{routes}</Switch>
         </main>

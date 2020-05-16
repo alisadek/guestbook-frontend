@@ -38,8 +38,8 @@ function NewComment(props) {
             value={comment.content}
             onChange={handleChange}
           />
-          <button onClick={props.mode ? handleEditSubmit : handleSubmit}>
-            post
+          <button style= {{backgroundColor: "#ee8572", color:"#fff", marginLeft: "200px"}} onClick={props.mode ? handleEditSubmit : handleSubmit}>
+            Post
           </button>
         </form>
       </div>

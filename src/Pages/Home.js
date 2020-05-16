@@ -35,7 +35,6 @@ function Home() {
         }),
         { "Content-Type": "application/json" },
         
-        // {Authorization: "Bearer"+ auth.token}
       );
       try {
         const responseData = await sendRequest("http://localhost:5000/api/");
@@ -43,7 +42,6 @@ function Home() {
       } catch {}
     } catch (err) {}
     
-    //  setComment({content: ""});
   }
 
   function deleteComment(id) {
@@ -87,7 +85,11 @@ function Home() {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <div>
-        {comments.map((commentItem, index) => {
+      <div style = {{margin: "60px"}}>
+        <h1 className = "center" style= {{paddingTop: "30px", margin: "2.5rem  2.5rem "}} > Hey There, Leave Us A Comment Below</h1>
+      <hr/>
+      </div>
+       {comments.map((commentItem, index) => {
           return commentItem.id === oldComment.id ? (
             isEditMode ? (
               <NewComment
@@ -130,7 +132,7 @@ function Home() {
             <NewComment onAdd={addComment} />
           ) : null
         ) : (
-          <Card className="comment">
+          <Card className="comment" style={{height:"70px" , width:"350px"}}>
             <h1>Please login to leave a comment</h1>
           </Card>
         )}

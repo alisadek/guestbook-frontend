@@ -15,19 +15,17 @@
 .comment p {
   font-size: 1.1em;
   margin-bottom: 10px;
-  white-space: pre-wrap;
+  white-space: pre-wrap;  
   word-wrap: break-word;
 }
 
 .comment button {
   position: relative;
-  float: right;
   margin-right: 10px;
-  background-color: #252a34;;
-  color: #fff;
+  color: black;
   border: none;
-  width: 40px;
-  height: 36px;
+  background: none;
+  padding: 0;
   cursor: pointer;
   outline: none;
 }
