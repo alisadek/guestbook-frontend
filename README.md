@@ -1,6 +1,5 @@
 ## Guest Book
 
-#### Example:
 
 An online guestbook where you can leave people messages, edit those messages or delete them. The frontend was built using ReactJS and the backend was build using Nodejs ExpressJS.
 
