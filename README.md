@@ -57,16 +57,16 @@ Backend contains:
 
 This was a 4 day long project built as a coding challenge.   
 
-I was asked to build an application that allowed users to write messages, edit those messages and delete them. In order to be able to write or edit messages you need to login. I started this process by using the `create-react-app` boilerplate, then adding `react-router-dom.
+I was asked to build an application that allowed users to write messages, edit those messages and delete them. In order to be able to write or edit messages you need to login. I started this process by using the `create-react-app` boilerplate, then adding `react-router-dom`.
 
 Let's get one thing out of the way before anything, the design "less than perfect" because I was not able to use libraries which meant I had to write the CSS which is not really my area of expertise, it probably would've looke a lot better if I could use BootStrap or Material-UI.
 I found it really challenging to finish this project in the required time without the use of any libraries or 3rd party frameworks. One of the main challengs I ran into was Authentication. I have done authentication in the past using "passport" package which makes it really easy to even configure OAuth but since that wasn't an option I had to figure out how to do it manually. Also adding the edit feature and making it edit the actual comments in the Database and having the user not feel any issue (the comment changing place or missing the previous text) was quite challenging. Due to project time constraints, I was not able to implement the reply feature because it would have taken one more day at least.
 
-At the end of the day, I was able to allow users to sign up, login, remain logged in, get logged out automatically after one hour (for security reasons), write new comments, edit or delete their own comments.
+At the end of the day, I was able to use (ReactJS, ExpressJS, Node, and MongoDB) to create this project and I was able to brush up on my basic CSS.
 
-## Things I would add with packages
+## Things I would add with packages:
 
--OAuth using Google and Facebook signin.
--Styling (a huuuge difference).
--Reply  (well maybe not with a package).
--Input Validation (that I could've done without a package but it would have taken a lot more time and I was already late).
+- OAuth using Google and Facebook signin.
+- Styling (a huuuge difference).
+- Reply  (well maybe not with a package).
+- Input Validation (I could've done that without a package but it would have taken a lot more time and I was already late).
