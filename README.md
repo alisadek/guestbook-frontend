@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Guest Book
 
-## Available Scripts
+#### Example:
 
-In the project directory, you can run:
+An online guestbook where you can leave people messages, edit those messages or delete them. The frontend was built using ReactJS and the backend was build using Nodejs ExpressJS.
 
-### `npm start`
+## Project Status
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The project is only missing the reply feature, it is still in development.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Installation and Setup Instructions
 
-### `npm test`
+#### Example:  
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1) Clone down this repository. You will need `node` and `npm` installed globally on your machine.
 
-### `npm run build`
+2) Clone the backend repository: "https://github.com/alisadek/guestbook-backend"
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Installation:
+  
+3) Run two terminals.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4) In the first terminal, go to the directory where you installed the backend.
 
-### `npm run eject`
+5) Install any the required packages.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`npm install`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6) To Start Server:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`npm start`  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+7) In the second terminal, go to the directory where you cloned the frontend (this repository).
 
-## Learn More
+8) Repeat steps 5 and 6.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+9) Project should start.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To Visit App Directly:
 
-### Code Splitting
+`localhost:3000/`  
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Key Features
+Users Can:
+- Register
+- Login (after Authentication). Login uses tokens for users to remain signed in and get signed out after token expires (1 hour).
+- Write new comments (only while logged in).
+- Edit comments (Only the ones they wrote).
+- Delete comments (Only the ones they wrote).
 
-### Analyzing the Bundle Size
+Backend contains:
+- REST APIs for fetching comments, editting and deleting them.
+- Authentication (using hashing method).
+- Error Handling.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Reflection  
 
-### Making a Progressive Web App
+This was a 4 day long project built as a coding challenge.   
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+I was asked to build an application that allowed users to write messages, edit those messages and delete them. In order to be able to write or edit messages you need to login. I started this process by using the `create-react-app` boilerplate, then adding `react-router-dom.
 
-### Advanced Configuration
+Let's get one thing out of the way before anything, the design "less than perfect" because I was not able to use libraries which meant I had to write the CSS which is not really my area of expertise, it probably would've looke a lot better if I could use BootStrap or Material-UI.
+I found it really challenging to finish this project in the required time without the use of any libraries or 3rd party frameworks. One of the main challengs I ran into was Authentication. I have done authentication in the past using "passport" package which makes it really easy to even configure OAuth but since that wasn't an option I had to figure out how to do it manually. Also adding the edit feature and making it edit the actual comments in the Database and having the user not feel any issue (the comment changing place or missing the previous text) was quite challenging. Due to project time constraints, I was not able to implement the reply feature because it would have taken one more day at least.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+At the end of the day, I was able to allow users to sign up, login, remain logged in, get logged out automatically after one hour (for security reasons), write new comments, edit or delete their own comments.
 
-### Deployment
+## Things I would add with packages
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+-OAuth using Google and Facebook signin.
+-Styling (a huuuge difference).
+-Reply  (well maybe not with a package).
+-Input Validation (that I could've done without a package but it would have taken a lot more time and I was already late).
